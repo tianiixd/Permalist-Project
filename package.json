@@ -1,0 +1,29 @@
+{
+  "name": "5-capstone---todo-list",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "dev": "nodemon src/server.ts",
+    "start": "ts-node src/server.ts",
+    "build:client": "tsc src/client/script.ts --outDir public/js --module esnext --target es2020 --moduleResolution bundler --watch"
+  },
+  "keywords": [],
+  "author": "tianiixd",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "*",
+    "express": "*",
+    "axios": "*",
+    "dotenv": "*",
+    "pg": "*"
+  },
+  "devDependencies": {
+    "@types/express": "*",
+    "@types/node": "*",
+    "@types/pg": "*",
+    "nodemon": "*",
+    "ts-node": "*",
+    "typescript": "*"
+  }
+}

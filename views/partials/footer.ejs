@@ -1,0 +1,52 @@
+</main>
+<footer>Copyright © <%= new Date().getFullYear() %>
+</footer>
+ <div
+      id="server-data"
+      data-notification="<%= JSON.stringify(locals.notification || null) %>"
+      style="display: none"
+    ></div>
+<script>
+     const dataDiv = document.getElementById("server-data");
+     const notification = JSON.parse(dataDiv.dataset.notification);
+    if (notification) {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          },
+        });
+        Toast.fire({
+          icon: notification.type,
+          title: notification.message,
+        });
+      }
+
+
+      function confirmDelete(checkbox) {
+    
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "Do you really want to delete this task?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33', 
+      cancelButtonColor: '#3085d6', 
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        checkbox.form.submit();
+      } else {
+        checkbox.checked = false;
+      }
+    });
+  }
+</script>
+</body>
+
+</html>
