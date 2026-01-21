@@ -36,7 +36,7 @@ interface IList {
 let items: IList[] = [];
 
 app.get("/", async (req, res) => {
-  renderIndex(res);
+  await renderIndex(res);
 });
 
 app.post("/add", async (req, res) => {
@@ -44,7 +44,7 @@ app.post("/add", async (req, res) => {
 
   try {
     if (!userInput || userInput.trim() === "")
-      return renderIndex(res, {
+      return await renderIndex(res, {
         type: "warning",
         message: "Please enter a task name!",
       });
@@ -89,7 +89,7 @@ app.post("/edit", async (req, res) => {
       newTitle,
       id,
     ]);
-    renderIndex(res, {
+    await renderIndex(res, {
       type: "success",
       message: "Updated the task successfully",
     });
@@ -107,7 +107,7 @@ app.post("/delete", async (req, res) => {
     await pool.query(
       "SELECT setval(pg_get_serial_sequence('items', 'id'), COALESCE(MAX(id), 0) + 1, false) FROM items",
     );
-    renderIndex(res, {
+    await renderIndex(res, {
       type: "success",
       message: "Deleted the task successfully",
     });
